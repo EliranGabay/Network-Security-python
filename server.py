@@ -1,18 +1,17 @@
 #eliran gabay
 import socket
+
 UDP_PORT = 12321
+UDP_LOCALHOST = "127.0.0.1"
+# Create and connect UDP network service
 try:
-    sock = socket.socket()
-    print("Socket successfully created" + "\r\n")
+    UDPSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    UDPSock.bind((UDP_LOCALHOST, UDP_PORT))
+    print "UDP server successful run"
 except socket.error as error:
-    print("Socket creation failed(error number:" + error.message + ")" + "\r\n")
-sock.bind(('', UDP_PORT))
-print("Socket binded to %s" % UDP_PORT+"\r\n")
-sock.listen(5)
+    print error
+# Get messages from clients
 while True:
-    client, addr = sock.accept()
-    print("Got connection from", addr)
-    client.send("You successfully connecting" + "\r\n")
-    data = client.recv(1024)
-    print(data, addr)
-    client.close()
+    data, client = UDPSock.recvfrom(1024)
+    print "Message from ", client, ":", data
+    UDPSock.sendto("The massage received", client)
