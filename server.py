@@ -1,4 +1,5 @@
 #eliran gabay
+import datetime
 import socket
 
 UDP_PORT = 12321
@@ -13,5 +14,5 @@ except socket.error as error:
 # Get messages from clients
 while True:
     data, client = UDPSock.recvfrom(1024)
-    print "Message from ", client, ":", data
+    print datetime.datetime.now().time(), " Message from:", client, ":", data
     UDPSock.sendto("The massage received", client)
