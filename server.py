@@ -1,4 +1,4 @@
-#eliran gabay 203062831
+
 from scapy.all import *
 UDP_PORT = 12321
 UDP_LOCALHOST = "127.0.0.1"
