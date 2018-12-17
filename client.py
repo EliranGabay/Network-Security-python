@@ -1,4 +1,3 @@
-#eliran gabay 203062831
 import string
 from scapy.all import *
 UDP_PORT = 12321
